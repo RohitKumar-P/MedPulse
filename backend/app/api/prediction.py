@@ -132,3 +132,93 @@ def breast_cancer_schema():
             status_code=500,
             detail=str(e)
         )
+
+
+@router.post("/parkinsons")
+def parkinsons_prediction(data: dict):
+    try:
+        return predict_disease(
+            "parkinsons",
+            data,
+            "parkinsons"
+        )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+
+
+@router.get("/parkinsons/schema")
+def parkinsons_schema():
+    try:
+        return get_model_schema(
+            "parkinsons"
+        )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+
+
+@router.post("/thyroid")
+def thyroid_prediction(data: dict):
+    try:
+        return predict_disease(
+            "thyroid",
+            data,
+            "thyroid_disorder"
+        )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+
+
+@router.get("/thyroid/schema")
+def thyroid_schema():
+    try:
+        return get_model_schema(
+            "thyroid"
+        )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+
+
+@router.post("/stroke")
+def stroke_prediction(data: dict):
+    try:
+        return predict_disease(
+            "stroke_risk",
+            data,
+            "stroke_risk"
+        )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+
+
+@router.get("/stroke/schema")
+def stroke_schema():
+    try:
+        return get_model_schema(
+            "stroke_risk"
+        )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )

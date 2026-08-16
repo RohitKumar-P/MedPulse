@@ -185,33 +185,100 @@ def predict_disease(
         features
     )
 
-    probabilities = model.predict_proba(df)[0]
+    probabilities = model.predict_proba(
+        df
+    )[0]
 
-    probability = _positive_probability(
-        model,
-        probabilities,
-        artifact.get("positive_class")
+    classes = list(
+        getattr(model, "classes_", [])
     )
+
+    predicted_index = int(
+        np.argmax(probabilities)
+    )
+
+    predicted_class = classes[
+        predicted_index
+    ]
+
+    predicted_probability = float(
+        probabilities[predicted_index]
+    )
+
+    # Multiclass thyroid screening:
+    # risk = probability of NOT being normal.
+    if "normal_class" in artifact:
+        normal_class = artifact[
+            "normal_class"
+        ]
+
+        normal_probability = 0.0
+
+        for index, value in enumerate(classes):
+            if str(value) == str(normal_class):
+                normal_probability = float(
+                    probabilities[index]
+                )
+                break
+
+        probability = 1.0 - normal_probability
+
+    else:
+        probability = _positive_probability(
+            model,
+            probabilities,
+            artifact.get(
+                "positive_class"
+            )
+        )
 
     score = round(
         probability * 100
     )
 
-    return {
-        "disease": display_name or disease_name,
+    result = {
+        "disease": (
+            display_name or disease_name
+        ),
         "risk_score": score,
-        "risk_level": risk_level(score),
+        "risk_level": risk_level(
+            score
+        ),
         "probability": round(
             probability,
             4
         ),
         "model": disease_name,
-        "model_features": len(features),
+        "model_features": len(
+            features
+        ),
         "disclaimer": (
-            "This is an ML-based screening estimate "
-            "and is not a medical diagnosis."
+            "This is an ML-based screening "
+            "estimate and is not a medical "
+            "diagnosis."
         )
     }
+
+    class_names = artifact.get(
+        "class_names"
+    )
+
+    if class_names:
+        result[
+            "predicted_class"
+        ] = class_names.get(
+            str(predicted_class),
+            str(predicted_class)
+        )
+
+        result[
+            "predicted_class_probability"
+        ] = round(
+            predicted_probability,
+            4
+        )
+
+    return result
 
 
 def get_model_schema(disease_name):

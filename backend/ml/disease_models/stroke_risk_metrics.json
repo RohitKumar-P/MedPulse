@@ -1,0 +1,62 @@
+{
+  "selected_model": {
+    "model": "balanced_random_forest",
+    "accuracy": 0.7671,
+    "balanced_accuracy": 0.7827,
+    "precision": 0.1493,
+    "recall": 0.8,
+    "f1": 0.2516,
+    "roc_auc": 0.8275,
+    "average_precision": 0.2126,
+    "confusion_matrix": [
+      [
+        744,
+        228
+      ],
+      [
+        10,
+        40
+      ]
+    ]
+  },
+  "baseline_model": {
+    "model": "random_forest",
+    "accuracy": 0.9217,
+    "balanced_accuracy": 0.6363,
+    "precision": 0.2581,
+    "recall": 0.32,
+    "f1": 0.2857,
+    "roc_auc": 0.814,
+    "average_precision": 0.1937,
+    "confusion_matrix": [
+      [
+        926,
+        46
+      ],
+      [
+        34,
+        16
+      ]
+    ]
+  },
+  "balanced_model": {
+    "model": "balanced_random_forest",
+    "accuracy": 0.7671,
+    "balanced_accuracy": 0.7827,
+    "precision": 0.1493,
+    "recall": 0.8,
+    "f1": 0.2516,
+    "roc_auc": 0.8275,
+    "average_precision": 0.2126,
+    "confusion_matrix": [
+      [
+        744,
+        228
+      ],
+      [
+        10,
+        40
+      ]
+    ]
+  }
+}

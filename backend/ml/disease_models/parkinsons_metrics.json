@@ -1,0 +1,11 @@
+{
+  "model": "parkinsons",
+  "dataset": "UCI Parkinsons",
+  "samples": 195,
+  "features": 22,
+  "subjects": 32,
+  "accuracy": 0.6744,
+  "precision": 0.7073,
+  "recall": 0.9355,
+  "f1": 0.8056
+}

@@ -72,3 +72,10 @@ backend/demo_medical_report.txt
 # Local backups
 backend/**/*.backup
 backend/**/*.backup-*
+
+# ML training datasets
+backend/ml/disease_models/datasets/
+
+# Python cache
+__pycache__/
+*.pyc

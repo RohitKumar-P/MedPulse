@@ -1,0 +1,8 @@
+{
+  "model": "thyroid",
+  "dataset": "UCI New Thyroid",
+  "samples": 215,
+  "features": 5,
+  "accuracy": 0.9767,
+  "f1_macro": 0.9689
+}
