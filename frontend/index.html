@@ -1,0 +1,383 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedPulse API Reference</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+    background:#08090b;
+    color:#f5f5f5;
+}
+
+header{
+    padding:70px 8% 50px;
+    border-bottom:1px solid #24262c;
+}
+
+.badge{
+    display:inline-block;
+    padding:7px 13px;
+    border:1px solid #34373e;
+    border-radius:999px;
+    color:#aeb4bf;
+    font-size:13px;
+}
+
+h1{
+    font-size:64px;
+    letter-spacing:-3px;
+    margin:20px 0 10px;
+}
+
+header p{
+    color:#9ca3af;
+    font-size:17px;
+    max-width:700px;
+}
+
+.container{
+    width:min(1050px,90%);
+    margin:auto;
+    padding:45px 0 80px;
+}
+
+.server{
+    padding:18px 22px;
+    border:1px solid #292c33;
+    border-radius:15px;
+    background:#101216;
+    margin-bottom:30px;
+}
+
+.green{
+    color:#65d68a;
+}
+
+.buttons{
+    display:flex;
+    gap:12px;
+    margin-bottom:45px;
+}
+
+.button{
+    padding:11px 16px;
+    border-radius:9px;
+    background:#f5f5f5;
+    color:#08090b;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+}
+
+.button.secondary{
+    background:#20242b;
+    color:#fff;
+}
+
+h2{
+    margin-top:45px;
+    font-size:28px;
+}
+
+.endpoint{
+    margin:14px 0;
+    border:1px solid #292c33;
+    border-radius:15px;
+    background:#101216;
+    overflow:hidden;
+}
+
+.endpoint-header{
+    padding:19px 20px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    cursor:pointer;
+}
+
+.method{
+    background:#22262e;
+    border-radius:7px;
+    padding:5px 9px;
+    font:700 12px Consolas,monospace;
+}
+
+.path{
+    font:15px Consolas,monospace;
+}
+
+.desc{
+    margin-left:auto;
+    color:#858c98;
+    font-size:13px;
+}
+
+.body{
+    display:none;
+    padding:18px 20px 22px;
+    border-top:1px solid #292c33;
+    color:#aeb4bf;
+}
+
+.endpoint.open .body{
+    display:block;
+}
+
+pre{
+    background:#08090b;
+    border:1px solid #24262c;
+    border-radius:9px;
+    padding:15px;
+    overflow:auto;
+    color:#d1d5db;
+}
+
+.note{
+    padding:16px 18px;
+    margin:12px 0;
+    border-left:3px solid #777;
+    border-radius:6px;
+    background:#101216;
+    color:#adb3bd;
+}
+
+footer{
+    border-top:1px solid #24262c;
+    padding:30px 8%;
+    color:#707783;
+}
+
+@media(max-width:700px){
+    h1{font-size:44px}
+    .desc{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<span class="badge">MEDPULSE • FRONTEND API GUIDE</span>
+<h1>MedPulse API</h1>
+<p>
+A simple API reference for the MedPulse frontend team.
+All application requests should communicate through the FastAPI backend.
+</p>
+</header>
+
+<main class="container">
+
+<div class="server">
+<span class="green">●</span>
+<strong> Local Backend</strong>
+&nbsp;&nbsp;
+<code>http://127.0.0.1:8000</code>
+</div>
+
+<div class="buttons">
+<a class="button" href="http://127.0.0.1:8000/docs" target="_blank">
+Open Swagger
+</a>
+
+<a class="button secondary"
+href="http://127.0.0.1:8000/openapi.json"
+target="_blank">
+Open OpenAPI
+</a>
+</div>
+
+<h2>Authentication</h2>
+
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="method">POST</span>
+<span class="path">/auth/register</span>
+<span class="desc">Create account</span>
+</div>
+<div class="body">
+<p>Register a new MedPulse user.</p>
+<pre>{
+  "username": "user123",
+  "password": "your-password"
+}</pre>
+</div>
+</div>
+
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="method">POST</span>
+<span class="path">/auth/login</span>
+<span class="desc">Login</span>
+</div>
+<div class="body">
+<p>Authenticate an existing user.</p>
+<pre>{
+  "username": "user123",
+  "password": "your-password"
+}</pre>
+</div>
+</div>
+
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="method">POST</span>
+<span class="path">/auth/refresh</span>
+<span class="desc">Refresh session</span>
+</div>
+<div class="body">
+<p>Refresh the current authentication session.</p>
+</div>
+</div>
+
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="method">POST</span>
+<span class="path">/auth/logout</span>
+<span class="desc">Logout</span>
+</div>
+<div class="body">
+<p>End the current authentication session.</p>
+</div>
+</div>
+
+<h2>AI & Assessment</h2>
+
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="method">POST</span>
+<span class="path">/ai/...</span>
+<span class="desc">AI processing</span>
+</div>
+<div class="body">
+<p>Check Swagger for the current AI routes and request schemas.</p>
+</div>
+</div>
+
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="method">POST</span>
+<span class="path">/assessment/...</span>
+<span class="desc">Health assessment</span>
+</div>
+<div class="body">
+<p>Submit assessment information to the backend.</p>
+</div>
+</div>
+
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="method">POST</span>
+<span class="path">/prediction/...</span>
+<span class="desc">Prediction</span>
+</div>
+<div class="body">
+<p>Use the supported prediction endpoints documented in Swagger.</p>
+</div>
+</div>
+
+<h2>📍 Location & Hospitals</h2>
+
+<div class="note">
+The frontend should request the user's device location.
+Never hard-code a user's location.
+</div>
+
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="method">GET</span>
+<span class="path">/hospitals/nearby</span>
+<span class="desc">Nearby hospitals</span>
+</div>
+<div class="body">
+<p>Send the user's live GPS coordinates.</p>
+
+<pre>GET /hospitals/nearby
+?latitude=17.385
+&longitude=78.4867
+&accuracy=20
+&radius=10000</pre>
+
+<p>Parameters:</p>
+
+<pre>latitude
+longitude
+accuracy
+radius</pre>
+</div>
+</div>
+
+<h2>🚨 Emergency</h2>
+
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="method">POST</span>
+<span class="path">/emergency/check</span>
+<span class="desc">Critical symptom check</span>
+</div>
+<div class="body">
+
+<pre>{
+  "text": "severe difficulty breathing",
+  "latitude": 17.385,
+  "longitude": 78.4867,
+  "accuracy": 20,
+  "critical_response_enabled": true
+}</pre>
+
+</div>
+</div>
+
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="method">POST</span>
+<span class="path">/emergency/activate</span>
+<span class="desc">Emergency mode</span>
+</div>
+<div class="body">
+<p>Activates the emergency workflow after critical symptoms are detected.</p>
+</div>
+</div>
+
+<h2>Emergency Contacts</h2>
+
+<div class="endpoint">
+<div class="endpoint-header">
+<span class="method">POST</span>
+<span class="path">/emergency-contacts/...</span>
+<span class="desc">Manage contacts</span>
+</div>
+<div class="body">
+<p>Use Swagger for the exact contact routes and schemas.</p>
+</div>
+</div>
+
+<h2>Frontend Rules</h2>
+
+<div class="note">1. Ask for location permission before hospital scanning.</div>
+<div class="note">2. Send GPS latitude, longitude and accuracy to the backend.</div>
+<div class="note">3. Never put backend secrets or API keys in frontend code.</div>
+<div class="note">4. Medical decision logic stays in the backend.</div>
+<div class="note">5. Emergency responses from the backend should be treated as high priority.</div>
+
+</main>
+
+<footer>
+MedPulse • Frontend Development Reference
+</footer>
+
+<script>
+document.querySelectorAll(".endpoint-header").forEach(header=>{
+    header.addEventListener("click",()=>{
+        header.parentElement.classList.toggle("open");
+    });
+});
+</script>
+
+</body>
+</html>
