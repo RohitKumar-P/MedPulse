@@ -1,0 +1,74 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Databases / local state
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+.next/
+dist/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Python caches
+.pytest_cache/
+.mypy_cache/
+
+# Local model/cache files
+*.bin
+*.pt
+*.pth
+*.onnx
+
+# Archives / downloaded raw datasets
+*.rar
+*.zip
+
+# Secrets / credentials
+secrets/
+credentials/
+*.pem
+*.key
+*.crt
+
+# Local test artifacts
+coverage/
+htmlcov/
+# Medical / patient data
+backend/data/medical_records/
+backend/demo_medical_report.txt
+
+# Local backups
+backend/**/*.backup
+backend/**/*.backup-*

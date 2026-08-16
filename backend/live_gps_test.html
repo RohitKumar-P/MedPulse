@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>MedPulse Live GPS Test</title>
+</head>
+<body>
+    <h2>MedPulse Live Location Test</h2>
+    <button onclick="findHospitals()">Enable Location & Scan Hospitals</button>
+    <pre id="output">Waiting...</pre>
+
+<script>
+async function findHospitals() {
+
+    const output = document.getElementById("output");
+
+    output.textContent = "Requesting live location...";
+
+    if (!navigator.geolocation) {
+        output.textContent = "GPS is not supported by this browser.";
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        async (position) => {
+
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const accuracy = position.coords.accuracy;
+
+            output.textContent =
+                `LIVE LOCATION\n` +
+                `Latitude: ${latitude}\n` +
+                `Longitude: ${longitude}\n` +
+                `Accuracy: ${accuracy}m\n\n` +
+                `Searching nearby hospitals...`;
+
+            try {
+
+                const url =
+                    `http://127.0.0.1:8000/hospitals/nearby` +
+                    `?latitude=${encodeURIComponent(latitude)}` +
+                    `&longitude=${encodeURIComponent(longitude)}` +
+                    `&accuracy=${encodeURIComponent(accuracy)}` +
+                    `&radius=10000`;
+
+                const response = await fetch(url);
+
+                const data = await response.json();
+
+                output.textContent =
+                    `LIVE LOCATION\n` +
+                    `Latitude: ${latitude}\n` +
+                    `Longitude: ${longitude}\n` +
+                    `Accuracy: ${accuracy}m\n\n` +
+                    `SOURCE: ${data.source}\n` +
+                    `HOSPITALS FOUND: ${data.hospitals?.length ?? 0}\n` +
+                    `RECOMMENDED: ${data.recommended_hospitals?.length ?? 0}\n\n` +
+                    JSON.stringify(
+                        data.recommended_hospitals,
+                        null,
+                        2
+                    );
+
+            } catch (error) {
+
+                output.textContent =
+                    "Hospital request failed:\n" +
+                    error;
+            }
+        },
+
+        (error) => {
+
+            output.textContent =
+                `LOCATION ERROR\n\n` +
+                `Code: ${error.code}\n` +
+                `Message: ${error.message}`;
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 15000,
+            maximumAge: 0
+        }
+    );
+}
+</script>
+
+</body>
+</html>

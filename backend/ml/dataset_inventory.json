@@ -1,0 +1,46 @@
+[
+  {
+    "path": "ml\\ai_benchmark\\cases.json",
+    "size": 2832
+  },
+  {
+    "path": "ml\\ai_benchmark\\report.json",
+    "size": 12212
+  },
+  {
+    "path": "ml\\datasets\\diabetes.csv",
+    "size": 23278
+  },
+  {
+    "path": "ml\\evaluation\\diabetes_metrics.json",
+    "size": 1637
+  },
+  {
+    "path": "ml\\evaluation\\heart_metrics.json",
+    "size": 1661
+  },
+  {
+    "path": "ml\\models\\diabetes_features.joblib",
+    "size": 116
+  },
+  {
+    "path": "ml\\models\\diabetes_metadata.joblib",
+    "size": 1081
+  },
+  {
+    "path": "ml\\models\\diabetes_model.joblib",
+    "size": 17637451
+  },
+  {
+    "path": "ml\\models\\heart_features.joblib",
+    "size": 115
+  },
+  {
+    "path": "ml\\models\\heart_metadata.joblib",
+    "size": 1153
+  },
+  {
+    "path": "ml\\models\\heart_model.joblib",
+    "size": 21995546
+  }
+]

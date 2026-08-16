@@ -1,0 +1,141 @@
+[
+  {
+    "text": "I have a headache and fever.",
+    "expected": [
+      "headache",
+      "fever"
+    ]
+  },
+  {
+    "text": "I am extremely thirsty and urinating frequently.",
+    "expected": [
+      "excessive_thirst",
+      "frequent_urination"
+    ]
+  },
+  {
+    "text": "I feel tired and my vision is blurred.",
+    "expected": [
+      "fatigue",
+      "blurred_vision"
+    ]
+  },
+  {
+    "text": "I have chest pain and difficulty breathing.",
+    "expected": [
+      "chest_pain",
+      "breathing_difficulty"
+    ]
+  },
+  {
+    "text": "I have a cough, sore throat and runny nose.",
+    "expected": [
+      "cough",
+      "sore_throat",
+      "runny_nose"
+    ]
+  },
+  {
+    "text": "I feel dizzy and nauseous.",
+    "expected": [
+      "dizziness",
+      "nausea"
+    ]
+  },
+  {
+    "text": "I have stomach pain and vomiting.",
+    "expected": [
+      "abdominal_pain",
+      "vomiting"
+    ]
+  },
+  {
+    "text": "I have diarrhea and abdominal pain.",
+    "expected": [
+      "diarrhea",
+      "abdominal_pain"
+    ]
+  },
+  {
+    "text": "My eyes are itchy and I keep sneezing.",
+    "expected": [
+      "itchy_eyes",
+      "sneezing"
+    ]
+  },
+  {
+    "text": "I have a skin rash and swelling.",
+    "expected": [
+      "skin_rash",
+      "swelling"
+    ]
+  },
+  {
+    "text": "I have joint pain and muscle aches.",
+    "expected": [
+      "joint_pain",
+      "muscle_pain"
+    ]
+  },
+  {
+    "text": "My face is drooping and I have trouble speaking.",
+    "expected": [
+      "facial_drooping",
+      "speech_problem"
+    ]
+  },
+  {
+    "text": "I suddenly developed weakness on one side and difficulty speaking.",
+    "expected": [
+      "sudden_weakness",
+      "speech_problem"
+    ]
+  },
+  {
+    "text": "I suddenly have chest pressure and shortness of breath.",
+    "expected": [
+      "chest_pain",
+      "breathing_difficulty"
+    ]
+  },
+  {
+    "text": "I passed out and lost consciousness.",
+    "expected": [
+      "loss_of_consciousness"
+    ]
+  },
+  {
+    "text": "I have heavy bleeding that I cannot stop.",
+    "expected": [
+      "severe_bleeding"
+    ]
+  },
+  {
+    "text": "My throat is swelling and I am having trouble breathing.",
+    "expected": [
+      "breathing_difficulty",
+      "severe_allergic_reaction",
+      "swelling"
+    ]
+  },
+  {
+    "text": "I don't have a headache.",
+    "expected": []
+  },
+  {
+    "text": "I don't have chest pain or breathing problems.",
+    "expected": []
+  },
+  {
+    "text": "I had a fever last week but I don't have one now.",
+    "expected": []
+  },
+  {
+    "text": "I am not having difficulty breathing.",
+    "expected": []
+  },
+  {
+    "text": "No chest pain, no dizziness and no nausea.",
+    "expected": []
+  }
+]

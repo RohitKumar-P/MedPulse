@@ -1,0 +1,62 @@
+{
+  "model": "heart_disease",
+  "dataset": {
+    "train_samples": 242,
+    "test_samples": 61,
+    "positive_train": 111,
+    "positive_test": 28
+  },
+  "cross_validation": {
+    "folds": 5,
+    "roc_auc": 0.9064713568530364,
+    "pr_auc": 0.9009053352945775,
+    "sensitivity": 0.7747747747747747,
+    "specificity": 0.8625954198473282,
+    "precision": 0.8269230769230769,
+    "f1": 0.8
+  },
+  "held_out_test": {
+    "accuracy": 0.8852459016393442,
+    "balanced_accuracy": 0.8885281385281385,
+    "roc_auc": 0.948051948051948,
+    "pr_auc": 0.9418381281496038,
+    "sensitivity": 0.9285714285714286,
+    "specificity": 0.8484848484848485,
+    "precision": 0.8387096774193549,
+    "f1": 0.8813559322033898,
+    "brier_score": 0.09783842522773493,
+    "confusion_matrix": {
+      "tn": 28,
+      "fp": 5,
+      "fn": 2,
+      "tp": 26
+    },
+    "classification_report": {
+      "0": {
+        "precision": 0.9333333333333333,
+        "recall": 0.8484848484848485,
+        "f1-score": 0.8888888888888888,
+        "support": 33.0
+      },
+      "1": {
+        "precision": 0.8387096774193549,
+        "recall": 0.9285714285714286,
+        "f1-score": 0.8813559322033898,
+        "support": 28.0
+      },
+      "accuracy": 0.8852459016393442,
+      "macro avg": {
+        "precision": 0.886021505376344,
+        "recall": 0.8885281385281385,
+        "f1-score": 0.8851224105461393,
+        "support": 61.0
+      },
+      "weighted avg": {
+        "precision": 0.8898995240613432,
+        "recall": 0.8852459016393442,
+        "f1-score": 0.8854311382791517,
+        "support": 61.0
+      }
+    }
+  }
+}

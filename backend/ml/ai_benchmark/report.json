@@ -1,0 +1,501 @@
+{
+  "cases": 22,
+  "true_positive": 31,
+  "false_positive": 0,
+  "false_negative": 3,
+  "precision": 1.0,
+  "recall": 0.9118,
+  "f1": 0.9538,
+  "timeout_seconds": 30,
+  "timed_out_cases": 0,
+  "latency": {
+    "min": 0.0,
+    "max": 22.209,
+    "average": 3.75
+  },
+  "results": [
+    {
+      "case": 1,
+      "text": "I have a headache and fever.",
+      "expected": [
+        "fever",
+        "headache"
+      ],
+      "predicted": [
+        "fever",
+        "headache"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 9.317
+    },
+    {
+      "case": 2,
+      "text": "I am extremely thirsty and urinating frequently.",
+      "expected": [
+        "excessive_thirst",
+        "frequent_urination"
+      ],
+      "predicted": [
+        "excessive_thirst",
+        "frequent_urination"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 4.974
+    },
+    {
+      "case": 3,
+      "text": "I feel tired and my vision is blurred.",
+      "expected": [
+        "blurred_vision",
+        "fatigue"
+      ],
+      "predicted": [
+        "blurred_vision",
+        "fatigue"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 5.457
+    },
+    {
+      "case": 4,
+      "text": "I have chest pain and difficulty breathing.",
+      "expected": [
+        "breathing_difficulty",
+        "chest_pain"
+      ],
+      "predicted": [
+        "breathing_difficulty",
+        "chest_pain"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [
+        {
+          "symptom": "chest_pain",
+          "matched_phrases": [
+            "chest pain"
+          ],
+          "source": "deterministic_safety_layer"
+        },
+        {
+          "symptom": "breathing_difficulty",
+          "matched_phrases": [
+            "difficulty breathing"
+          ],
+          "source": "deterministic_safety_layer"
+        }
+      ],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 0.001
+    },
+    {
+      "case": 5,
+      "text": "I have a cough, sore throat and runny nose.",
+      "expected": [
+        "cough",
+        "runny_nose",
+        "sore_throat"
+      ],
+      "predicted": [],
+      "true_positive": 0,
+      "false_positive": 0,
+      "false_negative": 3,
+      "safety_matches": [],
+      "status": "failed",
+      "error": "No AI provider available",
+      "latency_seconds": 22.209
+    },
+    {
+      "case": 6,
+      "text": "I feel dizzy and nauseous.",
+      "expected": [
+        "dizziness",
+        "nausea"
+      ],
+      "predicted": [
+        "dizziness",
+        "nausea"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 4.618
+    },
+    {
+      "case": 7,
+      "text": "I have stomach pain and vomiting.",
+      "expected": [
+        "abdominal_pain",
+        "vomiting"
+      ],
+      "predicted": [
+        "abdominal_pain",
+        "vomiting"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 4.788
+    },
+    {
+      "case": 8,
+      "text": "I have diarrhea and abdominal pain.",
+      "expected": [
+        "abdominal_pain",
+        "diarrhea"
+      ],
+      "predicted": [
+        "abdominal_pain",
+        "diarrhea"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 4.843
+    },
+    {
+      "case": 9,
+      "text": "My eyes are itchy and I keep sneezing.",
+      "expected": [
+        "itchy_eyes",
+        "sneezing"
+      ],
+      "predicted": [
+        "itchy_eyes",
+        "sneezing"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 4.59
+    },
+    {
+      "case": 10,
+      "text": "I have a skin rash and swelling.",
+      "expected": [
+        "skin_rash",
+        "swelling"
+      ],
+      "predicted": [
+        "skin_rash",
+        "swelling"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 4.153
+    },
+    {
+      "case": 11,
+      "text": "I have joint pain and muscle aches.",
+      "expected": [
+        "joint_pain",
+        "muscle_pain"
+      ],
+      "predicted": [
+        "joint_pain",
+        "muscle_pain"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 2.668
+    },
+    {
+      "case": 12,
+      "text": "My face is drooping and I have trouble speaking.",
+      "expected": [
+        "facial_drooping",
+        "speech_problem"
+      ],
+      "predicted": [
+        "facial_drooping",
+        "speech_problem"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [
+        {
+          "symptom": "facial_drooping",
+          "matched_phrases": [
+            "face is drooping"
+          ],
+          "source": "deterministic_safety_layer"
+        },
+        {
+          "symptom": "speech_problem",
+          "matched_phrases": [
+            "trouble speaking"
+          ],
+          "source": "deterministic_safety_layer"
+        }
+      ],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 0.0
+    },
+    {
+      "case": 13,
+      "text": "I suddenly developed weakness on one side and difficulty speaking.",
+      "expected": [
+        "speech_problem",
+        "sudden_weakness"
+      ],
+      "predicted": [
+        "speech_problem",
+        "sudden_weakness"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [
+        {
+          "symptom": "speech_problem",
+          "matched_phrases": [
+            "difficulty speaking"
+          ],
+          "source": "deterministic_safety_layer"
+        },
+        {
+          "symptom": "sudden_weakness",
+          "matched_phrases": [
+            "weakness on one side"
+          ],
+          "source": "deterministic_safety_layer"
+        }
+      ],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 0.0
+    },
+    {
+      "case": 14,
+      "text": "I suddenly have chest pressure and shortness of breath.",
+      "expected": [
+        "breathing_difficulty",
+        "chest_pain"
+      ],
+      "predicted": [
+        "breathing_difficulty",
+        "chest_pain"
+      ],
+      "true_positive": 2,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [
+        {
+          "symptom": "chest_pain",
+          "matched_phrases": [
+            "chest pressure"
+          ],
+          "source": "deterministic_safety_layer"
+        },
+        {
+          "symptom": "breathing_difficulty",
+          "matched_phrases": [
+            "shortness of breath"
+          ],
+          "source": "deterministic_safety_layer"
+        }
+      ],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 0.0
+    },
+    {
+      "case": 15,
+      "text": "I passed out and lost consciousness.",
+      "expected": [
+        "loss_of_consciousness"
+      ],
+      "predicted": [
+        "loss_of_consciousness"
+      ],
+      "true_positive": 1,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [
+        {
+          "symptom": "loss_of_consciousness",
+          "matched_phrases": [
+            "lost consciousness",
+            "passed out"
+          ],
+          "source": "deterministic_safety_layer"
+        }
+      ],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 0.0
+    },
+    {
+      "case": 16,
+      "text": "I have heavy bleeding that I cannot stop.",
+      "expected": [
+        "severe_bleeding"
+      ],
+      "predicted": [
+        "severe_bleeding"
+      ],
+      "true_positive": 1,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [
+        {
+          "symptom": "severe_bleeding",
+          "matched_phrases": [
+            "heavy bleeding"
+          ],
+          "source": "deterministic_safety_layer"
+        }
+      ],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 0.0
+    },
+    {
+      "case": 17,
+      "text": "My throat is swelling and I am having trouble breathing.",
+      "expected": [
+        "breathing_difficulty",
+        "severe_allergic_reaction",
+        "swelling"
+      ],
+      "predicted": [
+        "breathing_difficulty",
+        "severe_allergic_reaction",
+        "swelling"
+      ],
+      "true_positive": 3,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [
+        {
+          "symptom": "swelling",
+          "matched_phrases": [
+            "throat is swelling"
+          ],
+          "source": "deterministic_safety_layer"
+        },
+        {
+          "symptom": "breathing_difficulty",
+          "matched_phrases": [
+            "trouble breathing"
+          ],
+          "source": "deterministic_safety_layer"
+        },
+        {
+          "symptom": "severe_allergic_reaction",
+          "matched_phrases": [
+            "airway/throat swelling with breathing difficulty"
+          ],
+          "source": "deterministic_safety_layer"
+        }
+      ],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 0.0
+    },
+    {
+      "case": 18,
+      "text": "I don't have a headache.",
+      "expected": [],
+      "predicted": [],
+      "true_positive": 0,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 1.729
+    },
+    {
+      "case": 19,
+      "text": "I don't have chest pain or breathing problems.",
+      "expected": [],
+      "predicted": [],
+      "true_positive": 0,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 3.608
+    },
+    {
+      "case": 20,
+      "text": "I had a fever last week but I don't have one now.",
+      "expected": [],
+      "predicted": [],
+      "true_positive": 0,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 2.387
+    },
+    {
+      "case": 21,
+      "text": "I am not having difficulty breathing.",
+      "expected": [],
+      "predicted": [],
+      "true_positive": 0,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 2.661
+    },
+    {
+      "case": 22,
+      "text": "No chest pain, no dizziness and no nausea.",
+      "expected": [],
+      "predicted": [],
+      "true_positive": 0,
+      "false_positive": 0,
+      "false_negative": 0,
+      "safety_matches": [],
+      "status": "success",
+      "error": null,
+      "latency_seconds": 4.506
+    }
+  ]
+}
