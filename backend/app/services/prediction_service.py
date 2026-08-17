@@ -66,6 +66,55 @@ def _pipeline_classifier(calibrated):
     return None
 
 
+def _standard_feature_importance(model, features):
+    """Return normalized model feature importance values."""
+    importances = None
+
+    if hasattr(model, "feature_importances_"):
+        importances = model.feature_importances_
+
+    elif hasattr(model, "coef_"):
+        coef = model.coef_
+
+        if getattr(coef, "ndim", 1) > 1:
+            coef = np.mean(np.abs(coef), axis=0)
+        else:
+            coef = np.abs(coef)
+
+        importances = np.abs(coef)
+
+    if importances is None:
+        return []
+
+    importances = np.asarray(importances, dtype=float).flatten()
+
+    if len(importances) != len(features):
+        return []
+
+    total = float(np.sum(np.abs(importances)))
+
+    if total <= 0:
+        return []
+
+    normalized = np.abs(importances) / total
+
+    result = [
+        {
+            "factor": str(feature),
+            "impact": round(float(value), 6)
+        }
+        for feature, value in zip(features, normalized)
+        if float(value) > 0
+    ]
+
+    result.sort(
+        key=lambda x: x["impact"],
+        reverse=True
+    )
+
+    return result[:5]
+
+
 def get_factors(
     model,
     features,
