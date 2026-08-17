@@ -222,3 +222,33 @@ def stroke_schema():
             status_code=500,
             detail=str(e)
         )
+
+@router.post("/anemia")
+def anemia_prediction(data: dict):
+    try:
+        return predict_disease(
+            "anemia",
+            data,
+            "anemia"
+        )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+
+
+@router.get("/anemia/schema")
+def anemia_schema():
+    try:
+        return get_model_schema(
+            "anemia"
+        )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+

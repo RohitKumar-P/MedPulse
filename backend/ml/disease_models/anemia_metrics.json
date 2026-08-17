@@ -1,0 +1,63 @@
+{
+  "original_samples": 1421,
+  "unique_samples": 534,
+  "duplicates_removed": 887,
+  "selected_model": "hist_gradient_boosting",
+  "cross_validation": {
+    "logistic_regression": {
+      "accuracy": 0.986,
+      "balanced_accuracy": 0.9869,
+      "precision": 0.9719,
+      "recall": 1.0,
+      "f1": 0.9855,
+      "roc_auc": 0.9996,
+      "average_precision": 0.9995
+    },
+    "random_forest": {
+      "accuracy": 0.9953,
+      "balanced_accuracy": 0.9957,
+      "precision": 0.9905,
+      "recall": 1.0,
+      "f1": 0.9951,
+      "roc_auc": 1.0,
+      "average_precision": 1.0
+    },
+    "svm": {
+      "accuracy": 0.9697,
+      "balanced_accuracy": 0.971,
+      "precision": 0.9476,
+      "recall": 0.99,
+      "f1": 0.9683,
+      "roc_auc": 0.998,
+      "average_precision": 0.9979
+    },
+    "hist_gradient_boosting": {
+      "accuracy": 0.9977,
+      "balanced_accuracy": 0.9978,
+      "precision": 0.9951,
+      "recall": 1.0,
+      "f1": 0.9975,
+      "roc_auc": 0.999,
+      "average_precision": 0.9988
+    }
+  },
+  "test_metrics": {
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "roc_auc": 1.0,
+    "average_precision": 1.0,
+    "confusion_matrix": [
+      [
+        58,
+        0
+      ],
+      [
+        0,
+        49
+      ]
+    ]
+  }
+}

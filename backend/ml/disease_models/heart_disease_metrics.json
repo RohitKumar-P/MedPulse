@@ -1,0 +1,63 @@
+{
+  "dataset": "UCI Heart Disease Cleveland processed",
+  "samples": 303,
+  "features": 13,
+  "selected_model": "svm",
+  "cross_validation": {
+    "logistic_regression": {
+      "accuracy": 0.8139,
+      "balanced_accuracy": 0.8103,
+      "precision": 0.8154,
+      "recall": 0.7739,
+      "f1": 0.7913,
+      "roc_auc": 0.8963,
+      "average_precision": 0.892
+    },
+    "random_forest": {
+      "accuracy": 0.7974,
+      "balanced_accuracy": 0.7942,
+      "precision": 0.7941,
+      "recall": 0.7648,
+      "f1": 0.7748,
+      "roc_auc": 0.8866,
+      "average_precision": 0.8904
+    },
+    "hist_gradient_boosting": {
+      "accuracy": 0.8015,
+      "balanced_accuracy": 0.7984,
+      "precision": 0.7962,
+      "recall": 0.7652,
+      "f1": 0.779,
+      "roc_auc": 0.8643,
+      "average_precision": 0.859
+    },
+    "svm": {
+      "accuracy": 0.8264,
+      "balanced_accuracy": 0.8217,
+      "precision": 0.8409,
+      "recall": 0.7739,
+      "f1": 0.7997,
+      "roc_auc": 0.8818,
+      "average_precision": 0.8814
+    }
+  },
+  "test_metrics": {
+    "accuracy": 0.8689,
+    "balanced_accuracy": 0.8734,
+    "precision": 0.8125,
+    "recall": 0.9286,
+    "f1": 0.8667,
+    "roc_auc": 0.9437,
+    "average_precision": 0.9164,
+    "confusion_matrix": [
+      [
+        27,
+        6
+      ],
+      [
+        2,
+        26
+      ]
+    ]
+  }
+}
