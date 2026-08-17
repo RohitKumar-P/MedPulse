@@ -252,3 +252,31 @@ def anemia_schema():
             detail=str(e)
         )
 
+
+
+@router.post("/hypertension")
+def hypertension_prediction(data: dict):
+    try:
+        return predict_disease(
+            "hypertension",
+            data,
+            "hypertension"
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+
+
+@router.get("/hypertension/schema")
+def hypertension_schema():
+    try:
+        return get_model_schema(
+            "hypertension"
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )

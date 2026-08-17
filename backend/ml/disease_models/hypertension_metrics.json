@@ -1,0 +1,50 @@
+{
+  "disease": "hypertension",
+  "target": "hypertension",
+  "features": [
+    "RIAGENDR",
+    "RIDAGEYR",
+    "bmi",
+    "sbp_mean",
+    "dbp_mean"
+  ],
+  "training_rows": 4333,
+  "test_rows": 1084,
+  "positive_class": "hypertension",
+  "negative_class": "no_hypertension",
+  "best_model": "logistic_regression",
+  "cross_validation": {
+    "logistic_regression": {
+      "cv_accuracy_mean": 0.7382913659962014,
+      "cv_accuracy_std": 0.007536531888377851,
+      "cv_precision_mean": 0.5925951396416531,
+      "cv_recall_mean": 0.7900332225913621,
+      "cv_f1_mean": 0.6769614646020676,
+      "cv_roc_auc_mean": 0.8187720326015443
+    },
+    "random_forest": {
+      "cv_accuracy_mean": 0.7320576647993798,
+      "cv_accuracy_std": 0.006927256586785765,
+      "cv_precision_mean": 0.5889393900763034,
+      "cv_recall_mean": 0.7601328903654485,
+      "cv_f1_mean": 0.6632045653985016,
+      "cv_roc_auc_mean": 0.8139334025163315
+    },
+    "hist_gradient_boosting": {
+      "cv_accuracy_mean": 0.7442847971956069,
+      "cv_accuracy_std": 0.007851238212403472,
+      "cv_precision_mean": 0.6393742226158656,
+      "cv_recall_mean": 0.6086378737541528,
+      "cv_f1_mean": 0.6223533952143472,
+      "cv_roc_auc_mean": 0.8059959697388619
+    }
+  },
+  "held_out_test": {
+    "accuracy": 0.731549815498155,
+    "precision": 0.5841584158415841,
+    "recall": 0.7845744680851063,
+    "f1": 0.6696935300794552,
+    "roc_auc": 0.8163466161798294
+  },
+  "disclaimer": "This model estimates the likelihood of previously reported hypertension from NHANES-derived features. It is an ML screening estimate and is not a medical diagnosis."
+}
