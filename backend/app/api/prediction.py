@@ -44,6 +44,24 @@ def diabetes_prediction(data: dict):
         )
 
 
+@router.get("/heart/schema")
+def heart_schema():
+    try:
+        from app.services.disease_model_service import get_model_schema
+        return get_model_schema("heart_disease")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/diabetes/schema")
+def diabetes_schema():
+    try:
+        from app.services.disease_model_service import get_model_schema
+        return get_model_schema("diabetes")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @router.post("/liver")
 def liver_prediction(data: dict):
     try:
