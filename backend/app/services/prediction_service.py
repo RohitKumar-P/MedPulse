@@ -67,7 +67,8 @@ def _pipeline_classifier(calibrated):
 
 
 def _standard_feature_importance(model, features):
-    """Return normalized model feature importance values."""
+    """Return normalized feature importance values."""
+
     importances = None
 
     if hasattr(model, "feature_importances_"):
@@ -75,35 +76,83 @@ def _standard_feature_importance(model, features):
 
     elif hasattr(model, "coef_"):
         coef = model.coef_
-
         if getattr(coef, "ndim", 1) > 1:
             coef = np.mean(np.abs(coef), axis=0)
-        else:
-            coef = np.abs(coef)
-
         importances = np.abs(coef)
+
+    elif hasattr(model, "calibrated_classifiers_"):
+        values = []
+
+        for calibrated in model.calibrated_classifiers_:
+            estimator = getattr(calibrated, "estimator", None)
+
+            if estimator is None:
+                estimator = getattr(calibrated, "base_estimator", None)
+
+            if estimator is not None:
+                if hasattr(estimator, "feature_importances_"):
+                    values.append(
+                        np.asarray(
+                            estimator.feature_importances_,
+                            dtype=float
+                        )
+                    )
+                elif hasattr(estimator, "coef_"):
+                    coef = np.asarray(
+                        estimator.coef_,
+                        dtype=float
+                    )
+
+                    if coef.ndim > 1:
+                        coef = np.mean(
+                            np.abs(coef),
+                            axis=0
+                        )
+                    else:
+                        coef = np.abs(coef)
+
+                    values.append(coef)
+
+        if values:
+            importances = np.mean(
+                np.vstack(values),
+                axis=0
+            )
 
     if importances is None:
         return []
 
-    importances = np.asarray(importances, dtype=float).flatten()
+    importances = np.asarray(
+        importances,
+        dtype=float
+    ).flatten()
 
     if len(importances) != len(features):
         return []
 
-    total = float(np.sum(np.abs(importances)))
+    total = float(
+        np.sum(np.abs(importances))
+    )
 
     if total <= 0:
         return []
 
-    normalized = np.abs(importances) / total
+    normalized = (
+        np.abs(importances) / total
+    )
 
     result = [
         {
             "factor": str(feature),
-            "impact": round(float(value), 6)
+            "impact": round(
+                float(value),
+                6
+            )
         }
-        for feature, value in zip(features, normalized)
+        for feature, value in zip(
+            features,
+            normalized
+        )
         if float(value) > 0
     ]
 
