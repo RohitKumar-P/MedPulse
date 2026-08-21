@@ -1,7 +1,7 @@
 ﻿from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.middleware.trustedhost import TrustedHostMiddleware
 
+from app.api import profile
 from app.api.prediction import router as prediction_router
 from app.api.assessment import router as assessment_router
 from app.api.records import router as records_router
@@ -31,7 +31,10 @@ class SecurityHeadersMiddleware:
                     (b"x-content-type-options", b"nosniff"),
                     (b"x-frame-options", b"DENY"),
                     (b"referrer-policy", b"no-referrer"),
-                    (b"permissions-policy", b"camera=(), microphone=(), geolocation=()"),
+                    (
+                        b"permissions-policy",
+                        b"camera=(), microphone=(), geolocation=()"
+                    ),
                     (b"cache-control", b"no-store"),
                 ]
 
@@ -51,28 +54,28 @@ class SecurityHeadersMiddleware:
 app = FastAPI(
     title="Aegis Health AI",
     description="Evidence-first health intelligence prototype.",
-    version="0.9.0"
+    version="1.0.0",
 )
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5500",
-        "http://127.0.0.1:5500",
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:5174",
         "http://localhost:3000",
         "http://127.0.0.1:3000",
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
 app.add_middleware(SecurityHeadersMiddleware)
 
-
+app.include_router(auth_router)
+app.include_router(profile.router)
 app.include_router(prediction_router)
 app.include_router(assessment_router)
 app.include_router(records_router)
@@ -83,38 +86,20 @@ app.include_router(ai_router)
 app.include_router(hospitals_router)
 app.include_router(emergency_router)
 app.include_router(emergency_contacts_router)
-app.include_router(auth_router)
 
 
 @app.get("/")
 def root():
-
     return {
         "name": "Aegis Health AI",
         "status": "online",
-        "version": "0.9.0",
-        "principle": "No evidence, no conclusion."
+        "version": "1.0.0",
+        "principle": "No evidence, no conclusion.",
     }
 
 
 @app.get("/health")
 def health():
-
     return {
-        "status": "healthy"
+        "status": "healthy",
     }
-
-
-
-
-
-
-app.add_middleware(
-    TrustedHostMiddleware,
-    allowed_hosts=[
-        "127.0.0.1",
-        "localhost",
-    ],
-)
-
-

@@ -1,0 +1,11 @@
+﻿fastapi
+uvicorn
+pydantic
+requests
+numpy
+pandas
+scikit-learn
+joblib
+python-multipart
+pymupdf
+shap

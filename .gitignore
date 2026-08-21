@@ -79,3 +79,85 @@ backend/ml/disease_models/datasets/
 # Python cache
 __pycache__/
 *.pyc
+
+# Local application/browser data
+.medpulse-browser/
+
+# Virtual environments
+**/.venv/
+**/venv/
+**/env/
+
+# Environment files
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Backups
+backups/
+**/backups/
+backup-*/
+**/*backup*/
+**/*-backup-*/
+
+# Temporary/debug output
+*.txt
+!requirements.txt
+!README.md
+!*.md
+
+# Generated OpenAPI/debug dumps
+backend/*openapi*.json
+backend/*structure*.txt
+backend/endpoint.txt
+backend/tables.txt
+backend/backend_openapi.json
+
+# Local auth/debug files
+auth.txt
+api.txt
+backend.txt
+databaseconfig.txt
+frontend/authcode.txt
+
+# Frontend temporary files
+frontend/build-error.txt
+
+# Browser/application launcher local files
+MedPulse-Launcher.ps1
+MedPulse.cmd
+MedPulse.vbs
+start-medpulse.bat
+start-medpulse-hidden.vbs
+
+# Python backup source files
+*.before_shap
+*.before_patient_shap
+*.before_rag
+*.before_rag_final
+*.before-cookie-security
+*.before-token-cycle
+
+# Local source backups
+**/src-backup-*/
+**/app-backup-*/
+
+# Medical/private data
+backend/data/medical_records/
+backend/demo_medical_report.txt
+
+# ML training datasets
+backend/ml/disease_models/datasets/
+
+
+# Development backup files
+*.backup
+*.before-*
+*.before_*
+*-backup
+*-backup-*
+*.dashboard-backup
+*backup*

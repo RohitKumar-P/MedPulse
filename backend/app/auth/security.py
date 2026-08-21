@@ -1,111 +1,69 @@
-﻿import os
-import secrets
-from datetime import datetime, timedelta, timezone
+﻿from datetime import datetime, timedelta, timezone
 from pathlib import Path
+import os
+import uuid
 
 from dotenv import load_dotenv
-from jose import jwt
-import bcrypt
+from jose import JWTError, jwt
+from passlib.context import CryptContext
 
-load_dotenv(
-    Path(__file__).resolve().parent.parent.parent / ".env"
-)
+BASE_DIR = Path(__file__).resolve().parents[2]
+load_dotenv(BASE_DIR / ".env")
 
 JWT_SECRET = os.getenv("JWT_SECRET")
-JWT_ALGORITHM = os.getenv(
-    "JWT_ALGORITHM",
-    "HS256"
+JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
+JWT_EXPIRE_MINUTES = int(
+    os.getenv("JWT_ACCESS_TOKEN_EXPIRE_MINUTES", "15")
 )
 
-# Short-lived access session.
-JWT_EXPIRE_MINUTES = 10
-
 if not JWT_SECRET:
-    raise RuntimeError(
-        "JWT_SECRET is not configured"
-    )
+    raise RuntimeError("JWT_SECRET is not configured")
 
+pwd_context = CryptContext(
+    schemes=["bcrypt"],
+    deprecated="auto",
+)
 
-def hash_password(password):
+def hash_password(password: str) -> str:
+    return pwd_context.hash(password)
 
-    password_bytes = password.encode("utf-8")
-
-    if len(password_bytes) > 72:
-        raise ValueError(
-            "Password must be 72 UTF-8 bytes or shorter"
-        )
-
-    return bcrypt.hashpw(
-        password_bytes,
-        bcrypt.gensalt()
-    ).decode("utf-8")
-
-
-def verify_password(
-    password,
-    password_hash
-):
-
-    password_bytes = password.encode("utf-8")
-
-    if len(password_bytes) > 72:
+def verify_password(password: str, password_hash: str) -> bool:
+    try:
+        return pwd_context.verify(password, password_hash)
+    except Exception:
         return False
 
-    return bcrypt.checkpw(
-        password_bytes,
-        password_hash.encode("utf-8")
-    )
-
-
-def create_access_token(
-    subject,
-    role
-):
-
+def create_access_token(subject: str, role: str) -> str:
     now = datetime.now(timezone.utc)
-
-    expires = (
-        now
-        + timedelta(
-            minutes=JWT_EXPIRE_MINUTES
-        )
-    )
-
-    # Cryptographically random session/token ID.
-    jti = secrets.token_urlsafe(32)
+    expires = now + timedelta(minutes=JWT_EXPIRE_MINUTES)
 
     payload = {
-        "sub": subject,
+        "sub": str(subject),
         "role": role,
+        "jti": str(uuid.uuid4()),
         "iat": now,
         "exp": expires,
-        "jti": jti,
-        "type": "access"
+        "type": "access",
     }
 
     return jwt.encode(
         payload,
         JWT_SECRET,
-        algorithm=JWT_ALGORITHM
+        algorithm=JWT_ALGORITHM,
     )
 
-
-def decode_access_token(token):
-
-    payload = jwt.decode(
-        token,
-        JWT_SECRET,
-        algorithms=[JWT_ALGORITHM]
-    )
-
-    if payload.get("type") != "access":
-        raise ValueError(
-            "Invalid token type"
+def decode_access_token(token: str):
+    try:
+        payload = jwt.decode(
+            token,
+            JWT_SECRET,
+            algorithms=[JWT_ALGORITHM],
         )
 
-    if not payload.get("jti"):
-        raise ValueError(
-            "Missing session identifier"
-        )
+        if payload.get("type") != "access":
+            return None
 
-    return payload
+        return payload
+
+    except JWTError:
+        return None

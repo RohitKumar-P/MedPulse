@@ -298,3 +298,85 @@ def hypertension_schema():
             status_code=500,
             detail=str(e)
         )
+
+@router.post("/explain")
+async def explain_prediction(data: dict):
+
+    from app.ai.orchestrator import orchestrator
+
+    required = [
+        "disease",
+        "risk_level",
+        "risk_score"
+    ]
+
+    missing = [
+        key for key in required
+        if key not in data
+    ]
+
+    if missing:
+        raise HTTPException(
+            status_code=400,
+            detail={
+                "message": "Incomplete screening result",
+                "missing": missing
+            }
+        )
+
+    probability = data.get("probability")
+    factors = data.get("contributing_factors", [])
+    context = data.get("user_context", {})
+
+    prompt = f"""
+Explain this MedPulse screening result to a normal person.
+
+Disease/condition:
+{data["disease"]}
+
+Risk level:
+{data["risk_level"]}
+
+Risk score:
+{data["risk_score"]}
+
+Probability:
+{probability}
+
+Contributing factors:
+{factors}
+
+User context:
+{context}
+
+Rules:
+- Screening only, never confirmed diagnosis.
+- Use simple language.
+- Explain medical terminology.
+- Never invent information.
+- If a blood test, scan, or medical report is required, say so.
+- Do not prescribe medication.
+- Give clear next steps.
+- Mention urgent professional care only when appropriate.
+
+Return:
+1. What this means
+2. Why this result occurred
+3. What information may still be needed
+4. What to do next
+"""
+
+    try:
+        response = await orchestrator.local.generate(prompt)
+
+        return {
+            "status": "success",
+            "provider": "ollama",
+            "response": response
+        }
+
+    except Exception as exc:
+        raise HTTPException(
+            status_code=503,
+            detail=str(exc)
+        )

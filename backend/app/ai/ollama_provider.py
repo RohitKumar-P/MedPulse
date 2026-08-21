@@ -1,4 +1,4 @@
-import json
+﻿import json
 import httpx
 
 from app.ai.config import (
@@ -118,3 +118,22 @@ class OllamaProvider:
         return json.loads(
             raw
         )
+
+    async def generate(self, prompt: str):
+        import httpx
+
+        async with httpx.AsyncClient(timeout=120) as client:
+            response = await client.post(
+                "http://127.0.0.1:11434/api/generate",
+                json={
+                    "model": "qwen3:8b",
+                    "prompt": prompt,
+                    "stream": False
+                }
+            )
+
+            response.raise_for_status()
+
+            data = response.json()
+
+            return data.get("response", "").strip()

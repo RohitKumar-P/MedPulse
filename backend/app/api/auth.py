@@ -1,4 +1,5 @@
-﻿from fastapi import (
+﻿import os
+from fastapi import (
     APIRouter,
     Depends,
     HTTPException,
@@ -52,6 +53,9 @@ REFRESH_COOKIE = "medpulse_refresh"
 
 REFRESH_MAX_AGE = (
     7 * 24 * 60 * 60
+)    
+REFRESH_COOKIE_SECURE = (
+    os.getenv("MEDPULSE_COOKIE_SECURE", "false").lower() == "true"
 )
 
 
@@ -232,7 +236,7 @@ def login(
             key=REFRESH_COOKIE,
             value=refresh_token,
             httponly=True,
-            secure=False,
+            secure=REFRESH_COOKIE_SECURE,
             samesite="strict",
             max_age=REFRESH_MAX_AGE,
             path="/auth",
@@ -332,7 +336,7 @@ def refresh_access_token(
             key=REFRESH_COOKIE,
             value=new_refresh_token,
             httponly=True,
-            secure=False,
+            secure=REFRESH_COOKIE_SECURE,
             samesite="strict",
             max_age=REFRESH_MAX_AGE,
             path="/auth",
@@ -489,3 +493,4 @@ def require_roles(*roles):
         return user
 
     return dependency
+
